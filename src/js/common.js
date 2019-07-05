@@ -20,10 +20,29 @@ const getMembers = (number) => {
     });
 }
 
+const displayUsers = (users) => {
+
+    const wrap = document.getElementById('app');
+    
+    for (let user of users) {
+        const p = document.createElement('p')
+        const img = document.createElement('img')
+
+        img.src = user.picture.large;
+        img.title = user.name.first;
+        p.innerHTML = user.name.first;
+
+        wrap.appendChild(img);
+        wrap.appendChild(p);
+    }
+}
+
 getMembers(10)
     .then(users => {
         console.info(`Success, all users downloaded!`);
         console.log(users);
+        return users;
     })
-    .catch(error => console.error(error));
+    .then(displayUsers)
+    .catch(error => console.error(error))
     
