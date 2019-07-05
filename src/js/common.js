@@ -1,5 +1,22 @@
 import { get } from "https";
 
+const input = document.getElementById('request-input');
+const submit = document.getElementById('request-button');
+
+submit.onclick = () => {
+    let number = input.value;
+    console.log(number)
+
+    getMembers(number)
+    .then(users => {
+        console.info(`Success, all users downloaded!`);
+        console.log(users);
+        return users;
+    })
+    .then(displayUsers)
+    .catch(error => console.error(error))
+
+}
 
 const getMembers = (number) => {
     return new Promise((resolve, reject) =>{
@@ -37,12 +54,5 @@ const displayUsers = (users) => {
     }
 }
 
-getMembers(10)
-    .then(users => {
-        console.info(`Success, all users downloaded!`);
-        console.log(users);
-        return users;
-    })
-    .then(displayUsers)
-    .catch(error => console.error(error))
+
     
