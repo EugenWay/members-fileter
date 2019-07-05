@@ -2,8 +2,12 @@ import { get } from "https";
 
 const input = document.getElementById('request-input');
 const submit = document.getElementById('request-button');
+const wrap = document.getElementById('app');
 
 submit.onclick = () => {
+
+    clearWrap(wrap);
+
     let number = input.value;
     console.log(number)
 
@@ -39,20 +43,28 @@ const getMembers = (number) => {
 
 const displayUsers = (users) => {
 
-    const wrap = document.getElementById('app');
-    
     for (let user of users) {
         const p = document.createElement('p')
         const img = document.createElement('img')
+        const container = document.createElement('div');
+        container.className = `user`;
 
         img.src = user.picture.large;
         img.title = user.name.first;
         p.innerHTML = user.name.first;
 
-        wrap.appendChild(img);
-        wrap.appendChild(p);
+        container.appendChild(img);
+        container.appendChild(p);
+
+        wrap.appendChild(container)
     }
 }
 
+
+const clearWrap = (camp) => {
+    while (camp.firstChild) {
+        camp.removeChild(camp.firstChild);
+    }
+}
 
     
