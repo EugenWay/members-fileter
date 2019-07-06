@@ -4,12 +4,12 @@ const input = document.getElementById('request-input');
 const submit = document.getElementById('request-button');
 const wrap = document.getElementById('app');
 
+
 submit.onclick = () => {
 
     clearWrap(wrap);
 
     let number = input.value;
-    console.log(number)
 
     getMembers(number)
     .then(users => {
@@ -42,6 +42,10 @@ const getMembers = (number) => {
 }
 
 const displayUsers = (users) => {
+
+    let numberOfusers = users.length;
+    const counterLayer = document.getElementById('counter');
+    counterLayer.innerHTML = `Donwloaded ${numberOfusers} ${numberOfusers <= 1 ? 'user' : 'users'}`;
 
     for (let user of users) {
         const p = document.createElement('p')
